@@ -1,5 +1,6 @@
 // Importar la función mdLinks desde el módulo mdLinks.js
-const mdLinks = require('./md-links.js');
+// { mdLinks } extrayendo específicamente la función mdLinks asignado una variable
+const { mdLinks }  = require('./lib/mdLinks.js');
 // declarar la variable receivePath y nanalizar su ruta
 const receivePath = './examples';
 
