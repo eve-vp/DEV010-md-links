@@ -1,4 +1,5 @@
 // Importar la función mdLinks desde el módulo mdLinks.js
+// En ecosistemas donde predomina la utilización de NodeJS, es más frecuente encontrarse usando CommonJS
 // { mdLinks } extrayendo específicamente la función mdLinks asignado una variable
 const { mdLinks }  = require('./lib/mdLinks.js');
 // declarar la variable receivePath y nanalizar su ruta
