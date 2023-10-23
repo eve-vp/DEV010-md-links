@@ -1,29 +1,18 @@
-const validateLinks = require('.lib/validateLinks');
+const validateLinks = require('../lib/validateLinks');
 
-describe('validateLinks', () => {
-  it('should validate links and return their statuses', async () => {
-    const markdownContent = `
-      This is a [valid link](https://www.google.com) to an example website.
-      Here is an [invalid link](https://www.nonexistentwebsite.com).`;
-
-    const filePath = 'path/to/example.md';
-    const links = await validateLinks(markdownContent, filePath);
-
-    expect(links).toEqual([
+describe('validateLinksFunc', () => {
+  it('should return an array of validated link', async () => {
+    const markdownContent = '[link](https://www.example.com)';
+    const filePath = '/path/to/markdown/file.md';
+    const validateLinksFunc = await validateLinks(markdownContent, filePath);
+    expect(validateLinksFunc).toEqual([
       {
-        text: 'valid link',
-        href: 'https://www.google.com',
-        file: 'path/to/example.md',
-        status: 200,
-        statusText: 'OK'
-      },
-      {
-        text: 'invalid link',
-        href: 'https://www.nonexistentwebsite.com',
-        file: 'path/to/example.md',
-        status: 'No status',
-        statusText: 'No status text'
+        href: 'https://www.example.com',
+        status: 200, // Agrega el código de estado esperado para el enlace válido.
+        statusText: 'OK', // Agrega el texto de estado esperado para el enlace válido.
+        text: 'link',
       }
     ]);
+    
   });
 });

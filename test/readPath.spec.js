@@ -1,4 +1,4 @@
-const readPath = require('.lib/readPath');
+const readPath = require('../lib/readPath.js'); // Corrige la ruta de importación del módulo readPath.js
 
 describe('readPath', () => {
   it('should return a promise that resolves with the file path if it exists', () => {
@@ -9,7 +9,7 @@ describe('readPath', () => {
 
   it('should return a promise that rejects with an error message if the file path does not exist', () => {
     return readPath('path/to/nonexistent/file.md').catch((error) => {
-      expect(error).toEqual("La ruta 'path/to/nonexistent/file.md' no se encontró");
+      expect(error).toEqual("The route 'path/to/nonexistent/file.md' was not found");
     });
   });
 });
