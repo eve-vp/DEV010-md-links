@@ -1,20 +1,12 @@
-// Importar la función mdLinks desde el módulo mdLinks.js
-// En ecosistemas donde predomina la utilización de NodeJS, es más frecuente encontrarse usando CommonJS
-// { mdLinks } extrayendo específicamente la función mdLinks asignado una variable
-const { mdLinks }  = require('./lib/mdLinks.js');
-// declarar la variable receivePath y nanalizar su ruta
-const receivePath = './examples';
+const mdLinks = require('./mdLinks'); // Importa la función mdLinks desde el archivo mdLinks.js
+const filePath = 'example.md'; // Ruta de ejemplo del archivo Markdown
 
-// Llamar a la función mdLinks con la ruta de tu archivo Markdown
-// pasa 2 argumentos receivePath y false
-mdLinks(receivePath, false)
-// then() para manejar los enlaces encontrados
-  .then((links) => {
-  // si la promesa se resuelve con éxito, se imprime el enlace
-    console.log(links);
+mdLinks(filePath) // Llama a la función mdLinks con la ruta del archivo como argumento
+  .then(links => {
+    // Haces algo con los links si la promesa se resuelve exitosamente
+    console.log("Links encontrados:", links);
   })
-  // catch() si ocurre un error durante el proceso
-  .catch((error) => {
-    // Maneja los errores si ocurren
-    console.error(error.message);
+  .catch(error => {
+    // Manejas cualquier error que ocurra durante la ejecución de mdLinks
+    console.error("Error:", error);
   });

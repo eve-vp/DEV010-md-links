@@ -1,8 +1,8 @@
 {
   "name": "md-links",
-  "version": "0.1.0",
-  "engines": {
-    "node": ">=16.x"
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
   },
   "bootcamp": {
     "createdAt": "2023-09-04T18:43:43.114Z",
