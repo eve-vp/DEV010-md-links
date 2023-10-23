@@ -1,4 +1,4 @@
-const extractLinks = require('./extractLinks');
+const extractLinks = require('.lib/extractLinks');
 
 describe('extractLinks', () => {
   it('should extract links from the markdown content', () => {

@@ -1,4 +1,4 @@
-const validateLinks = require('./validateLinks');
+const validateLinks = require('.lib/validateLinks');
 
 describe('validateLinks', () => {
   it('should validate links and return their statuses', async () => {

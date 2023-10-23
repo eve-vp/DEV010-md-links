@@ -1,4 +1,4 @@
-const readPath = require('./readPath');
+const readPath = require('.lib/readPath');
 
 describe('readPath', () => {
   it('should return a promise that resolves with the file path if it exists', () => {

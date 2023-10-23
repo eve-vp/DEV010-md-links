@@ -1,4 +1,4 @@
-const mdLinks = require('./mdLinks');
+const mdLinks = require('.lib/mdLinks');
 
 describe('mdLinks', () => {
   // Se dercribe la función y se espera que provea un file Markdown
