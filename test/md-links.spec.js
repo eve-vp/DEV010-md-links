@@ -1,4 +1,7 @@
 const mdLinks = require('../lib/mdLinks');
+const readPath = require('./readPath'); // Importa en modulo readPath
+const extractLinks = require('./extractLinks');
+const validateLinks = require('./validatetLinks');
 
 describe('mdLinks', () => {
 
