@@ -1,12 +1,18 @@
-const mdLinks = require('./mdLinks'); // Importa la función mdLinks desde el archivo mdLinks.js
-const filePath = 'example.md'; // Ruta de ejemplo del archivo Markdown
+const  mdLinks  = require('./lib/mdLinks'); // Importa la función mdLinks desde el archivo mdLinks.js
+const filePath = './examples/example.md'; 
+const validate = true; // o false, dependiendo del caso
 
-mdLinks(filePath) // Llama a la función mdLinks con la ruta del archivo como argumento
+mdLinks(filePath, validate) // Llama a la función mdLinks con la ruta del archivo como argumento
   .then(links => {
     // Haces algo con los links si la promesa se resuelve exitosamente
-    console.log("Links encontrados:", links);
+    console.log(links);
   })
-  .catch(error => {
-    // Manejas cualquier error que ocurra durante la ejecución de mdLinks
-    console.error("Error:", error);
-  });
+  .catch(console.error);
+
+  // if(validate) {
+  //   validateLinks(links)
+  //     .then(validate => resolvee(inksValidated)) 
+  //     .catch(err => reject(err)); 
+  // } else {
+  //   resolve(links);
+  // }

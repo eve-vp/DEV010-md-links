@@ -1,13 +1,13 @@
 const mdLinks = require('../lib/mdLinks.js');
 
 describe('mdLinks', () => {
-  // Se dercribe la función y se espera que provea un file Markdown
+  // Se describe la función y se espera que provea un archivo Markdown
   it('should return a list of links from the provided Markdown file', async () => {
-    const filePath = './examples/example1.md';
+    const filePath = './examples/example.md';
     const links = await mdLinks(filePath);
     
     // Se puede verificar la longitud de la lista de enlaces
-    expect(links).toHaveLength(); // Se espera que haya enlaces
+    expect(links.length).toBeGreaterThan(0); // Se espera que haya enlaces
 
     // Verificar si cada enlace tiene las propiedades adecuadas
     links.forEach(link => {
@@ -19,15 +19,11 @@ describe('mdLinks', () => {
     // Verificar enlaces específicos en la lista si es necesario
     const expectedLinks = [
       {
-        text: 'Logo Title Text 2',
-        href: 'https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png',
-        file: 'example1.md'
+        text: "I´m an inline-referent link",
+        href: "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet",
+        file: "./examples/example.md",
       },
-      {
-        text: 'imagen ejemplo',
-        href: 'https://res.cloudinary.com/practicaldev/image/fetch/s--hcaefXQw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6a413tyi7awhnisccl62.jpg',
-        file: 'example2.md'
-      }
+      // Resto de los objetos esperados
     ];
     expect(links).toEqual(expect.arrayContaining(expectedLinks)); // Se espera que la lista de enlaces contenga los enlaces esperados
   });

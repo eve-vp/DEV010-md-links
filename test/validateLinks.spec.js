@@ -1,18 +1,40 @@
+const axios = require('axios');
 const validateLinks = require('../lib/validateLinks');
 
+jest.mock('axios');
+
 describe('validateLinksFunc', () => {
-  it('should return an array of validated link', async () => {
-    const markdownContent = '[link](https://www.example.com)';
-    const filePath = '/path/to/markdown/file.md';
-    const validateLinksFunc = await validateLinks(markdownContent, filePath);
-    expect(validateLinksFunc).toEqual([
-      {
-        href: 'https://www.example.com',
-        status: 200, // Agrega el código de estado esperado para el enlace válido.
-        statusText: 'OK', // Agrega el texto de estado esperado para el enlace válido.
-        text: 'link',
-      }
-    ]);
-    
+  it('should return validated links with status', () => {
+    const links = [{ href: 'https://www.example.com' }];
+    const mockResponse = { status: 200 };
+
+    axios.get.mockResolvedValue(mockResponse);
+
+    return validateLinks(links).then((validatedLinks) => {
+      expect(validatedLinks).toEqual([
+        {
+          href: 'https://www.example.com',
+          status: 200,
+          ok: expect.stringContaining('✔️ok'),
+        },
+      ]);
+    });
+  });
+
+  it('should handle undefined links', () => {
+    const links = [{}]; // Link vacío para simular un escenario incorrecto
+    const mockError = {}; // Error vacío para simular un error de respuesta
+
+    axios.get.mockRejectedValue(mockError);
+
+    return validateLinks(links).then((validatedLinks) => {
+      expect(validatedLinks).toEqual([
+        {
+          href: 'undefined',
+          status: 'undefined',
+          ok: expect.stringContaining('❌fail'),
+        },
+      ]);
+    });
   });
 });
