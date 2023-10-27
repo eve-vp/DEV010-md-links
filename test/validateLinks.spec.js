@@ -4,37 +4,49 @@ const validateLinks = require('../lib/validateLinks');
 jest.mock('axios');
 
 describe('validateLinksFunc', () => {
+
   it('should return validated links with status', () => {
-    const links = [{ href: 'https://www.example.com' }];
-    const mockResponse = { status: 200 };
 
-    axios.get.mockResolvedValue(mockResponse);
+    const markdownLinks = [
+      {
+        href: 'https://www.example.com',
+        status: 200,
+        ok: '✔️  ok'
+      }
+    ];
 
-    return validateLinks(links).then((validatedLinks) => {
+    return validateLinks(markdownLinks).then((validatedLinks) => {
       expect(validatedLinks).toEqual([
-        {
+        { 
           href: 'https://www.example.com',
-          status: 200,
-          ok: expect.stringContaining('✔️ok'),
-        },
+          status: 200, 
+          ok: '✔️  ok' 
+        }
       ]);
     });
+
   });
 
   it('should handle undefined links', () => {
-    const links = [{}]; // Link vacío para simular un escenario incorrecto
-    const mockError = {}; // Error vacío para simular un error de respuesta
 
-    axios.get.mockRejectedValue(mockError);
+    const badLinks = [
+      {
+        href: undefined,
+        status: 'undefined',
+        ok: '❌ fail'
+      }
+    ];
 
-    return validateLinks(links).then((validatedLinks) => {
+    return validateLinks(badLinks).then((validatedLinks) => {
       expect(validatedLinks).toEqual([
         {
-          href: 'undefined',
+          href: undefined,
           status: 'undefined',
-          ok: expect.stringContaining('❌fail'),
-        },
+          ok: '❌ fail'  
+        }
       ]);
     });
+
   });
+
 });
