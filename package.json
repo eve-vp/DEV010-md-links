@@ -2,7 +2,7 @@
   "name": "md-links",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "bootcamp": {
     "createdAt": "2023-09-04T18:43:43.114Z",
